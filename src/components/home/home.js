@@ -1,12 +1,14 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-class Home extends Component{
+class Home extends Component {
 
 
-    render(){
-        return(
-            <div>
-
+    render() {
+        return (
+            <div className="mainBody">
+                <div className="slideshow-container">
+                
+                </div>
             </div>
         )
     }
