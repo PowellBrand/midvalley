@@ -11,9 +11,10 @@
     align-content: center;
 }
 .navbtn{
-    height: 45px;
+    height: 75px;
     color: white;
     padding-top: 30px;
+    text-decoration: none;
 }
 .navbtn:hover{
     background-color: rgb(12, 24, 111);

@@ -6,7 +6,7 @@ class District extends Component{
     render(){
         return(
             <div>
-                
+                Placeholder
             </div>
         )
     }

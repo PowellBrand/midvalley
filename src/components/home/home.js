@@ -1,17 +1,47 @@
 import React, { Component } from 'react';
 import './home.css';
+import img1 from './img1.png';
+import img2 from './img2.png';
 
 class Home extends Component {
 
+    
+    
+    
 
     render() {
         return (
             <div className="mainBody">
-                <div className="slideshow-container">
-                    This is for the pictures
+
+                {/* slideshow */}
+                {/* <div className="slideshow-container">
+                    <div class="mySlides fade">
+                        <div class="numbertext">1 / 3</div>
+                        <img src={img1} className="homeImg" />
+                        <div class="text">Caption Text</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                        <div class="numbertext">2 / 3</div>
+                        <img src={img2} className="homeImg" />
+                        <div class="text">Caption Two</div>
+                    </div>
+
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
                 </div>
+                <br />
+                <div className="imgDot">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div> */}
+
+                {/* end slideshow */}
+
                 <div className="p-div">
-                <h1>WHAT WE DO</h1>
+                    <h1>WHAT WE DO</h1>
                     <p>As adopted by the Board of Trustees, the purpose of the District is to provide public sanitary sewer collection and conveyance services to the residents situated within the legal boundaries of the District, and to exercise all powers conferred upon the District by the laws of the State of Utah.
 
     The Trustees promulgate policies, rules, and regulations to provide sanitary sewer collecting in a safe, efficient, and fiscally responsible manner.
