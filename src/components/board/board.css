@@ -1,0 +1,10 @@
+.board-memeber-cont{
+    display: flex;
+    flex-direction: column;
+    
+}
+.b-member{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}

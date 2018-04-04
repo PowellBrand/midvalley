@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Router from './routes';
 import Header from './components/header/header';
 import Nav from './components/nav/nav';
-import Home from './components/home/home';
+
 import emeImg from './emeImg.png';
 import mapImg from './mapImg.png';
 import './reset.css';
