@@ -22,5 +22,20 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "A site for midvalley improvment district",
+  "main": "server/server.js",
+  "proxy": "http://localhost:4000",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PowellBrand/midvalley.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PowellBrand/midvalley/issues"
+  },
+  "homepage": "https://github.com/PowellBrand/midvalley#readme"
 }
