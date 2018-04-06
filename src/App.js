@@ -3,7 +3,6 @@ import Router from './routes';
 import Header from './components/header/header';
 import Nav from './components/nav/nav';
 
-import emeImg from './emeImg.png';
 import mapImg from './mapImg.png';
 import './reset.css';
 import './App.css';
@@ -18,8 +17,13 @@ class App extends Component {
 
         <Router />
         <div className="emeMapCont">
-          <img src={emeImg} alt="for emergencies" />
-          <img src={mapImg} alt="map of district" />
+          <div className="emeMap-div">
+            <div className="emergencies">
+              <h1>EMERGENCY!</h1><br />
+              <p>If you experience a sewer backup in your home, please call our District first at<br /> <a href="tel:(801) 255-7321">(801) 255-7321</a></p>
+            </div>
+            <img src={mapImg} alt="map of district" />
+          </div>
         </div>
       </div>
     );

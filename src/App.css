@@ -4,6 +4,7 @@
   padding-right: 175px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .leftBar{
@@ -23,4 +24,19 @@
   margin-top: 20px;
 }
 
-
+.emergencies{
+  width: 196px;
+  height: 185px;
+  padding: 20px 5px;
+  font-size: 22px;
+  color: rgb(255, 255, 0);
+  background-color: rgb(255, 14, 6);
+}
+.emergencies a{
+  text-decoration: none;
+}
+.emeMap-div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
