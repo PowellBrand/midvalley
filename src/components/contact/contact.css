@@ -1,0 +1,21 @@
+.contactBody{
+    align-items: center;
+}
+.contactDiv{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    height: auto;
+}
+
+.contCard{
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+}
+
+.contacth2{
+    font-size: 17px;
+    font-weight: 600;
+}

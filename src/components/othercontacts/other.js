@@ -5,7 +5,7 @@ class Other extends Component {
 
     render() {
         return (
-            <div className="mainBody">
+            <div className="otherBody">
                 <div className="otherDiv">
                     <h1>OTHER CONTACTS</h1>
                     <div className="otherCont">

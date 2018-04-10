@@ -1,0 +1,17 @@
+.otherBody{
+    align-items: center;
+    align-content: center;
+}
+.otherDiv{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+.otherCont{
+    width: 250px;
+    height: 65px;
+    /* background-color: red; */
+    margin: 20px;
+}
