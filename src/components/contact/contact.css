@@ -1,5 +1,6 @@
 .contactBody{
     align-items: center;
+    align-content: center;
 }
 .contactDiv{
     display: flex;
@@ -7,11 +8,14 @@
     flex-wrap: wrap;
     width: auto;
     height: auto;
+    margin-left: 50px;
 }
 
 .contCard{
-    width: 150px;
-    height: 150px;
+    /* display: flex;
+    flex-direction: column; */
+    width: 200px;
+    height: 105px;
     margin: 10px;
 }
 

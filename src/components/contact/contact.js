@@ -26,7 +26,7 @@ class Contact extends Component {
                         <a href="mailto:cathyk@mvdst.com">cathyk@mvdst.com</a>
                     </div>
                     <div className="contCard">
-                        <h2>Financial Officer</h2>
+                        <h2 className="contacth2">Financial Officer</h2>
                         <p>Brent Christensen<br />(385) 351-2746</p>
                         <a href="mailto:brentc@mvdst.com">brentc@mvdst.com</a>
                     </div>
