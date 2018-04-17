@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class District extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            agenda: [],
+            meeting_schedule: [],
+            budget_sum: [],
+            budget_doc: [],
+            sewer: [],
+            service_fee: [],
+            sew_lateral: []
+        }
 
+    }
 
     render() {
         return (
