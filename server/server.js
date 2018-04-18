@@ -20,6 +20,19 @@ var jsonParser = bodyParser.json()
 app.use(cors());
 //--------------------END-------------------------//
 
+
+// ------------- End Points ------------- //
+
+app.post('/api/agenda', controller.agenda);
+app.post('/api/meeting', controller.meeting);
+app.post('/api/service', controller.service);
+app.post('/api/sewer_lat', controller.sewer_lat);
+app.post('/api/sewer_rate', controller.sewer_rate);
+app.post('/api/budget_doc', controller.budget_doc);
+app.post('/api/budget_sum', controller.budget_sum);
+
+// ------------ End End points ------------ //
+
 massive(process.env.CONNECTION).then(db => {
     app.set('db', db);
 }).catch(console.error);
