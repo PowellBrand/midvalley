@@ -7,6 +7,7 @@ import Contractors from './components/contractors/contractors';
 import District from './components/district/district';
 import Pay from './components/payBill/payBill';
 import Other from './components/othercontacts/other';
+import FileDrop from './components/district/fileDrop';
 
 
 
@@ -21,6 +22,7 @@ export default function Router() {
             <Route path="/District-info" component={District} />
             <Route path="/Pay-my-bill" component={Pay} />
             <Route path="/Other-Contacts" component={Other} />
+            <Route path="/File-Drop" component={FileDrop} />
         </Switch>
 
     )
