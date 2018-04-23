@@ -22,7 +22,7 @@ export default function Router() {
             <Route path="/District-info" component={District} />
             <Route path="/Pay-my-bill" component={Pay} />
             <Route path="/Other-Contacts" component={Other} />
-            <Route path="/File-Drop" component={FileDrop} />
+            <Route path="/Upload" component={FileDrop} />
         </Switch>
 
     )
