@@ -17,12 +17,12 @@ class Board extends Component {
                 </div>
                 <div className="board-memeber-cont">
                     <div className="b-member">
-                        <img className="b-img" src={quinn} alt="picture of Quinn Sperry" />
+                        <img className="b-img" src={quinn} alt="Quinn Sperry" />
                         <h2>QUINN SPERRY,</h2><h3>Chairman,</h3><h4>(801)255-5428,</h4><p>quinn@mvdst.com</p><br /><p>Quinn Sperry has lived in the Midvale area for more than 30 years.  Quinn received his bachelor’s degree and juris doctorate from the University of Utah.  He is a founding partner of the Midvale based law firm Morris Sperry focusing on real estate law with an emphasis on litigation and community associations law (condominiums, townhomes, planned unit developments, etc.).</p>
                     </div>
 
                     <div className="b-member">
-                        <img className="b-img" src={sondra} alt="picture of Quinn Sperry" />
+                        <img className="b-img" src={sondra} alt="Sondra Smith" />
                         <h2>SONDRA SMITH,</h2>
                         <h4>(801)699-5249,</h4>
                         <p>sondras@mvdst.com</p><br />

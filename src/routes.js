@@ -7,7 +7,7 @@ import Contractors from './components/contractors/contractors';
 import District from './components/district/district';
 import Pay from './components/payBill/payBill';
 import Other from './components/othercontacts/other';
-import FileDrop from './components/district/fileDrop';
+import FileDrop from './components/fileDrop/fileDrop';
 
 
 
