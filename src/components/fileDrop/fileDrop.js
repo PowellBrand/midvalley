@@ -4,15 +4,15 @@ import Dropzone from 'react-dropzone';
 // import request from 'superagent';
 // import sha1 from 'sha1'
 
-const preset = process.env.CLOUDINARY_UPLOAD_PRESET;
-const url = process.env.CLOUDINARY_UPLOAD_URL;
-const api_key = process.env.API_KEY;
+const preset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
+const url = process.env.REACT_APP_CLOUDINARY_UPLOAD_URL;
+const api_key = process.env.REACT_APP_API_KEY;
 
 class fileDrop extends Component {
     constructor() {
         super();
         this.state = {
-            files: []
+            uploadURL: ''
         }
         this.handleDrop = this.handleDrop.bind(this);
     }
@@ -20,10 +20,10 @@ class fileDrop extends Component {
     onImageDrop(files) {
         console.log(files)
         this.setState({
-        files: files
+            files: files
         })
         this.handleDrop(files)
-        }
+    }
     handleDrop = files => {
         const uploaders = files.map(file => {
             // Initial FormData
@@ -39,8 +39,15 @@ class fileDrop extends Component {
                 headers: { "X-Requested-With": "XMLHttpRequest" },
             }).then(response => {
                 const data = response.data;
-                const fileURL = data.secure_url // You should store this URL for future references in your app
-                console.log(data);
+
+                this.setState({
+                    uploadURL: data.secure_url
+                })
+                console.log(this.state.uploadURL)
+                axios.put('/upload/agenda', {
+                    uploadURL: this.state.uploadURL
+                })
+
             })
         });
 
@@ -67,7 +74,7 @@ class fileDrop extends Component {
             <div className="imagePreview_main">
                 <Dropzone
                     multiple={false}
-                    accept="file/*"
+                    accept="application/*"
                     onDrop={this.onImageDrop.bind(this)}
                     style={dropzoneStyle}>
                     <div>To upload, click here, or drag an drop and image.</div>

@@ -1,11 +1,11 @@
 module.exports = {
 
     agenda: (req, res) => {
-        let { agenda } = req.body;
-
-        req.app.get('db').addAgenda([agenda]).then(file => {
-            res.send(file[0]);
-        }).catch(e => console.log(e))
+        const db = req.app.get('db');
+        const { agenda } = req.body
+        db.addAgenda(agenda).then(() => {
+            res.status(200).send()
+        }).catch(() => res.status(500).send())
     },
 
     meeting: (req, res) => {

@@ -1,3 +1,3 @@
-insert into agenda (agenda)
-values
-($1)
+update agenda
+set agenda = ($1)
+where id = 1
