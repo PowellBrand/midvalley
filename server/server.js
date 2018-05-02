@@ -7,17 +7,12 @@ const express = require('express')
     , passport = require('passport')
     , Auth0Strategy = require('passport-auth0')
     , axios = require('axios')
-    , flash = require('express-flash');
+    // , flash = require('express-flash');
 
 const path = require('path');
 
-// multer config //
-// const multer = require('multer');
-// const upload = multer({ storage: multer.memoryStorage() })
-// end multer config //
-
 const app = express();
-app.use(flash());
+// app.use(flash());
 
 const controller = require('./controller/controller');
 

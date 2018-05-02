@@ -44,17 +44,17 @@ class fileDrop extends Component {
                     uploadURL: data.secure_url
                 })
                 console.log(this.state.uploadURL)
+
                 axios.put('/upload/agenda', {
                     uploadURL: this.state.uploadURL
                 })
-
             })
         });
 
         // Once all the files are uploaded 
-        axios.all(uploaders).then(() => {
-            // ... perform after upload is successful operation
-        });
+        // axios.all(uploaders).then(() => {
+        // ... perform after upload is successful operation
+        // });
     }
 
 
