@@ -7,12 +7,11 @@ const express = require('express')
     , passport = require('passport')
     , Auth0Strategy = require('passport-auth0')
     , axios = require('axios')
-    // , flash = require('express-flash');
+    
 
 const path = require('path');
 
 const app = express();
-// app.use(flash());
 
 const controller = require('./controller/controller');
 
@@ -29,12 +28,14 @@ app.use(cors());
 // ------------- End Points ------------- //
 
 app.put('/upload/agenda', controller.agenda);
-app.post('/api/meeting', controller.meeting);
-app.post('/api/service', controller.service);
-app.post('/api/sewer_lat', controller.sewer_lat);
-app.post('/api/sewer_rate', controller.sewer_rate);
-app.post('/api/budget_doc', controller.budget_doc);
-app.post('/api/budget_sum', controller.budget_sum);
+app.get('/agenda', controller.getAgenda)
+app.put('/upload/meeting', controller.meeting);
+app.get('/meeting', controller.getMeeting);
+// app.put('/api/service', controller.service);
+// app.put('/api/sewer_lat', controller.sewer_lat);
+// app.put('/api/sewer_rate', controller.sewer_rate);
+// app.put('/api/budget_doc', controller.budget_doc);
+// app.put('/api/budget_sum', controller.budget_sum);
 
 // ------------ End End points ------------ //
 

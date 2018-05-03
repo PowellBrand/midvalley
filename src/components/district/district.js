@@ -1,19 +1,36 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 
 
 class District extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
-            agenda: [],
-            meeting_schedule: [],
-            budget_sum: [],
-            budget_doc: [],
-            sewer: [],
-            service_fee: [],
-            sew_lateral: []
+        this.state = {
+            agenda: '',
+            meeting: '',
+            budget_sum: '',
+            budget_doc: '',
+            sewer: '',
+            service_fee: '',
+            sew_lateral: ''
         }
+
+    }
+    componentDidMount() {
+        axios.get('/agenda')
+            .then((resp) => {
+
+                this.setState({
+                    agenda: resp.data[0].agenda
+                })
+            })
+        axios.get('/meeting')
+            .then((resp) => {
+                this.setState({
+                    meeting: resp.data[0].meeting_schedule
+                })
+            })
 
     }
 
@@ -27,6 +44,8 @@ class District extends Component {
                         The District is a separate legal entity with three members on the Board of Trustees. The Board of Trustees is elected by the public and has decision making authority, the authority to levy taxes, the power to designate management, the ability to significantly influence operations, and primary accountability for fiscal matters.<br /><br />
                         Meetings of the Board of Trustees are held on the second Wednesday of each month at Noon at the District office. The meetings are open to the public.
                     </p>
+                    <a href={this.state.agenda} target="_blank">AGENDA</a>
+                    <a href={this.state.meeting} target="_blank">MEETING</a>
                 </div>
             </div>
         )

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Dropzone from 'react-dropzone';
-// import request from 'superagent';
-// import sha1 from 'sha1'
+
 
 const preset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 const url = process.env.REACT_APP_CLOUDINARY_UPLOAD_URL;
@@ -12,49 +11,84 @@ class fileDrop extends Component {
     constructor() {
         super();
         this.state = {
-            uploadURL: ''
+            agendaURL: '',
+            meeting: ''
         }
-        this.handleDrop = this.handleDrop.bind(this);
+        this.handleAgendaDrop = this.handleAgendaDrop.bind(this);
+        this.onAgendaDrop = this.onAgendaDrop.bind(this);
+        this.handleMeetingDrop = this.handleMeetingDrop.bind(this);
+        this.onMeetingDrop = this.onMeetingDrop.bind(this)
     }
-
-    onImageDrop(files) {
+// Handle agenda
+    onAgendaDrop(files) {
         console.log(files)
         this.setState({
             files: files
         })
-        this.handleDrop(files)
+        this.handleAgendaDrop(files)
     }
-    handleDrop = files => {
+    handleAgendaDrop = files => {
         const uploaders = files.map(file => {
-            // Initial FormData
             const formData = new FormData();
             formData.append("file", file);
-            formData.append("tags", `The_File_You_Selected`);
-            formData.append("upload_preset", preset); // Replace the preset name with your own
-            formData.append("api_key", api_key); // Replace API key with your own Cloudinary key
+            formData.append("tags", `Agenda`);
+            formData.append("upload_preset", preset); 
+            formData.append("api_key", api_key); 
             formData.append("timestamp", (Date.now() / 1000) | 0);
 
-            // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
             return axios.post(url, formData, {
                 headers: { "X-Requested-With": "XMLHttpRequest" },
             }).then(response => {
                 const data = response.data;
 
                 this.setState({
-                    uploadURL: data.secure_url
+                    agendaURL: data.secure_url
                 })
-                console.log(this.state.uploadURL)
-
                 axios.put('/upload/agenda', {
-                    uploadURL: this.state.uploadURL
+                    agendaURL: this.state.agendaURL
                 })
             })
         });
-
         // Once all the files are uploaded 
-        // axios.all(uploaders).then(() => {
-        // ... perform after upload is successful operation
-        // });
+        axios.all(uploaders).then(() => {
+            // ... perform after upload is successful operation
+        });
+    }
+
+// Handle meeting
+    onMeetingDrop(files) {
+        console.log(files)
+        this.setState({
+            files: files
+        })
+        this.handleMeetingDrop(files)
+    }
+    handleMeetingDrop = files => {
+        const uploaders = files.map(file => {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("tags", `Meeting Schedule`);
+            formData.append("upload_preset", preset); 
+            formData.append("api_key", api_key); 
+            formData.append("timestamp", (Date.now() / 1000) | 0);
+
+            return axios.post(url, formData, {
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+            }).then(response => {
+                const data = response.data;
+console.log(data.secure_url)
+                this.setState({
+                    meetingURL: data.secure_url
+                })
+                axios.put('/upload/meeting', {
+                    meetingURL: this.state.meetingURL
+                })
+            })
+        });
+        // Once all the files are uploaded 
+        axios.all(uploaders).then(() => {
+            // ... perform after upload is successful operation
+        });
     }
 
 
@@ -75,9 +109,16 @@ class fileDrop extends Component {
                 <Dropzone
                     multiple={false}
                     accept="application/*"
-                    onDrop={this.onImageDrop.bind(this)}
+                    onDrop={this.onAgendaDrop}
                     style={dropzoneStyle}>
-                    <div>To upload, click here, or drag an drop and image.</div>
+                    <div>AGENDA, click here, or drag and drop a PDF.</div>
+                </Dropzone>
+                <Dropzone
+                    multiple={false}
+                    accept="application/*"
+                    onDrop={this.onMeetingDrop}
+                    style={dropzoneStyle}>
+                    <div>MEETING SCHEDULE, click here, or drag and drop a PDF.</div>
                 </Dropzone>
 
 

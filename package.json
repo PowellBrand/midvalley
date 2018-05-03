@@ -5,7 +5,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
-    "cloudinary": "^1.11.0",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
@@ -19,18 +18,17 @@
     "react-dom": "^16.2.0",
     "react-dropzone": "^4.2.9",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1",
-    "superagent": "^3.8.2"
+    "react-scripts": "1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "description": "A site for midvalley improvment district",
   "main": "server/server.js",
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:4005",
   "devDependencies": {},
   "repository": {
     "type": "git",
