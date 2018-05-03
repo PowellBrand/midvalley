@@ -29,13 +29,25 @@ app.use(cors());
 
 app.put('/upload/agenda', controller.agenda);
 app.get('/agenda', controller.getAgenda)
+
 app.put('/upload/meeting', controller.meeting);
 app.get('/meeting', controller.getMeeting);
-// app.put('/api/service', controller.service);
-// app.put('/api/sewer_lat', controller.sewer_lat);
-// app.put('/api/sewer_rate', controller.sewer_rate);
-// app.put('/api/budget_doc', controller.budget_doc);
-// app.put('/api/budget_sum', controller.budget_sum);
+
+app.put('/upload/opBudgetSum', controller.opBudgetSum);
+app.get('/opBudgetSum', controller.getOpBudgetSum)
+
+app.put('/upload/opBudgetDoc', controller.opBudgetDoc);
+app.get('/opBudgetDoc', controller.getOpBudgetDoc)
+
+app.put('/upload/sewerRate', controller.sewerRate);
+app.get('/sewerRate', controller.getSewerRate)
+
+app.put('/upload/serviceFee', controller.serviceFee);
+app.get('/serviceFee', controller.getServiceFee);
+
+app.put('/upload/lateral', controller.lateral);
+app.get('/lateral', controller.getLateral)
+
 
 // ------------ End End points ------------ //
 
