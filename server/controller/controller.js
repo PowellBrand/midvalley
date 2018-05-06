@@ -10,7 +10,7 @@ module.exports = {
 
     getAgenda: (req, res) => {
         const db = req.app.get('db');
-        
+
         db.getAgenda().then((result) => {
             res.status(200).send(result)
         }).catch((e) => {
@@ -26,7 +26,7 @@ module.exports = {
         }).catch(() => res.status(500).send())
     },
     getMeeting: (req, res) => {
-        const db = req.app.get('db');      
+        const db = req.app.get('db');
         db.getMeeting().then((result) => {
             res.status(200).send(result)
         }).catch((e) => {
@@ -43,7 +43,7 @@ module.exports = {
         }).catch(() => res.status(500).send())
     },
     getOpBudgetSum: (req, res) => {
-        const db = req.app.get('db');      
+        const db = req.app.get('db');
         db.getOpBudgetSum().then((result) => {
             res.status(200).send(result)
         }).catch((e) => {
@@ -59,7 +59,7 @@ module.exports = {
         }).catch(() => res.status(500).send())
     },
     getOpBudgetDoc: (req, res) => {
-        const db = req.app.get('db');      
+        const db = req.app.get('db');
         db.getOpBudgetDoc().then((result) => {
             res.status(200).send(result)
         }).catch((e) => {
@@ -76,7 +76,7 @@ module.exports = {
         }).catch(() => res.status(500).send())
     },
     getSewerRate: (req, res) => {
-        const db = req.app.get('db');      
+        const db = req.app.get('db');
         db.getSewerRate().then((result) => {
             res.status(200).send(result)
         }).catch((e) => {
@@ -91,8 +91,8 @@ module.exports = {
             res.status(200).send()
         }).catch(() => res.status(500).send())
     },
-    getServiceFee: (req, res)=> {
-        const db = req.app.get('db');      
+    getServiceFee: (req, res) => {
+        const db = req.app.get('db');
         db.getServiceFee().then((result) => {
             res.status(200).send(result)
         }).catch((e) => {
@@ -107,13 +107,33 @@ module.exports = {
             res.status(200).send()
         }).catch(() => res.status(500).send())
     },
-    getLateral: (req, res)=> {
-        const db = req.app.get('db');      
+    getLateral: (req, res) => {
+        const db = req.app.get('db');
         db.getLateral().then((result) => {
             res.status(200).send(result)
         }).catch((e) => {
             console.log(e)
             res.status(500).send()
         })
+    },
+    
+    setUser: (req, res, next) => {
+        if (req.user && !req.session.user) {
+            req.session.user = req.user;
+        }
+        res.redirect('/');
+    },
+
+    sendUserToClient: (req, res, next) => {
+        if (!req.session.user) {
+            res.status(403).send();
+        } else {
+            res.status(200).send(req.session.user);
+        }
+    },
+
+    logout: (req, res) => {
+        req.logOut();
+        res.redirect(process.env.REACT_APP_REDIRECT)
     }
 }

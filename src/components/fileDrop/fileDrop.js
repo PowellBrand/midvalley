@@ -310,6 +310,7 @@ class fileDrop extends Component {
 
         return (
             <div className="imagePreview_main">
+            <a href={process.env.REACT_APP_LOGIN}><button className="LoginButton">Login</button></a>
                 <Dropzone
                     multiple={false}
                     accept="application/*"

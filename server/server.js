@@ -7,8 +7,6 @@ const express = require('express')
     , passport = require('passport')
     , Auth0Strategy = require('passport-auth0')
     , axios = require('axios')
-    
-
 const path = require('path');
 
 const app = express();
@@ -22,8 +20,71 @@ var jsonParser = bodyParser.json()
 app.use(cors());
 //--------------------END-------------------------//
 
+//Set up session and passport.
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+//--End session and passpot setup--//
 
+//Auth0 Strategy
+passport.use(new Auth0Strategy({
+    domain: process.env.AUTH_DOMAIN,
+    clientID: process.env.CLIENTID,
+    clientSecret: process.env.CLIENTSECRET,
+    callbackURL: process.env.CALLBACK_URL,
+    scope: 'openid profile'
+}, function (accessToken, refreshToken, extraParams, profile, done) {
+    const db = app.get('db');
 
+    let { displayName, user_id, email } = profile
+    db.find_user([user_id]).then((users) => {
+        //logged to console for testing//
+        // console.log(users)
+        ///////////////////////////////
+        if (!users[0]) {
+            db.create_user([
+                displayName,
+                email,
+                user_id,
+            ]).then(user => {
+
+                return done(null, user[0].id)
+            })
+        } else {
+            return done(null, users[0].id)
+        }
+    })
+
+}))
+//---End Strategy---//
+
+//serialize and deserialize the user
+passport.serializeUser((id, done) => {
+    return done(null, id)
+})
+passport.deserializeUser((user, done) => {
+    return done(null, user.userid)
+})
+
+//Auth endpoints
+app.get('/auth/login', passport.authenticate('auth0'))
+app.get('/auth/callback', passport.authenticate('auth0', {
+    successRedirect: process.env.REACT_APP_REDIRECT,
+    failureRedirect: process.env.REACT_APP_REDIRECT
+}))
+app.get('/auth/me', (req, res) => {
+    if (!req.user) {
+        res.status(404).send('User not found');
+    } else {
+        res.status(200).send(req.user.admin)
+    }
+})
+// app.post('/auth/logout', authController.logout);
+app.get('/auth/logout', controller.logout)
 
 // ------------- End Points ------------- //
 
