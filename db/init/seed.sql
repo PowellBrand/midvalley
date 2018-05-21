@@ -40,6 +40,12 @@ create table sewer_lat
     sewer_lateral text
 )
 
+create table construction
+(
+    id serial primary key,
+    construction text
+)
+
 create table if not exists users (
     id serial primary key,
     username varchar(180),

@@ -66,8 +66,14 @@ passport.use(new Auth0Strategy({
 passport.serializeUser((id, done) => {
     return done(null, id)
 })
-passport.deserializeUser((user, done) => {
-    return done(null, user.userid)
+// passport.deserializeUser((user, done) => {
+//     return done(null, user.userid)
+// })
+passport.deserializeUser((id, done) => {
+    app.get('db').find_session_user([id])
+        .then((user) => {
+            return done(null, user[0])
+        })
 })
 
 //Auth endpoints
@@ -108,6 +114,18 @@ app.get('/serviceFee', controller.getServiceFee);
 
 app.put('/upload/lateral', controller.lateral);
 app.get('/lateral', controller.getLateral)
+
+app.put('/upload/construction', controller.construction)
+app.get('/construction', controller.getConstruction)
+
+app.put('/upload/standardDraw', controller.standardDraw)
+app.get('/standardDraw', controller.getStandard)
+
+app.put('/upload/develop', controller.development)
+app.get('/development', controller.getDevelopment)
+
+app.put('/upload/impact', controller.impact)
+app.get('/impact', controller.getImpact)
 
 
 // ------------ End End points ------------ //

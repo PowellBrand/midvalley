@@ -17,7 +17,12 @@ class fileDrop extends Component {
             opBudgetDocURL: '',
             sewerRateURL: '',
             serviceFeeURL: '',
-            lateralURL: ''
+            lateralURL: '',
+            constructionURL: '',
+            standardDrawURL: '',
+            developURL: '',
+            impactURL: '',
+            isAdmin: false
         }
         this.handleAgendaDrop = this.handleAgendaDrop.bind(this);
         this.onAgendaDrop = this.onAgendaDrop.bind(this);
@@ -27,7 +32,7 @@ class fileDrop extends Component {
 
         this.handleOpBudgetSumDrop = this.handleOpBudgetSumDrop.bind(this);
         this.onOpBudgetSumDrop = this.onOpBudgetSumDrop.bind(this);
-        
+
         this.handleOpBudgetDocDrop = this.handleOpBudgetDocDrop.bind(this);
         this.onOpBudgetDocDrop = this.onOpBudgetDocDrop.bind(this);
 
@@ -39,7 +44,37 @@ class fileDrop extends Component {
 
         this.handleLateralDrop = this.handleLateralDrop.bind(this);
         this.onLateralDrop = this.onLateralDrop.bind(this);
+
+        this.handleConstructionDrop = this.handleConstructionDrop.bind(this);
+        this.onConstructionDrop = this.onConstructionDrop.bind(this);
+
+        this.handleStandardDrawDrop = this.handleStandardDrawDrop.bind(this);
+        this.onStandardDrawDrop = this.onStandardDrawDrop.bind(this);
+        
+        this.handleDevelopDrop = this.handleDevelopDrop.bind(this);
+        this.onDevelopDrop = this.onDevelopDrop.bind(this);
+        
+        this.handleImpactDrop = this.handleImpactDrop.bind(this);
+        this.onImpactDrop = this.onImpactDrop.bind(this);
     }
+
+    componentWillMount() {
+        axios.get('/auth/me').then(({ data }) => {
+            this.setState({
+                isAdmin: data
+            })
+
+        }).catch(e => { })
+    }
+
+    // Check admin
+    adminCheck(bool) {
+        this.setState({
+            isAdmin: !this.state.admin
+        })
+
+    }
+
     // Handle agenda
     onAgendaDrop(files) {
         console.log(files)
@@ -294,6 +329,150 @@ class fileDrop extends Component {
             // ... perform after upload is successful operation
         });
     }
+    // Handle Construction Spec
+    onConstructionDrop(files) {
+        console.log(files)
+        this.setState({
+            files: files
+        })
+        this.handleConstructionDrop(files)
+    }
+    handleConstructionDrop = files => {
+        const uploaders = files.map(file => {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("tags", `Sewer Lateral`);
+            formData.append("upload_preset", preset);
+            formData.append("api_key", api_key);
+            formData.append("timestamp", (Date.now() / 1000) | 0);
+
+            return axios.post(url, formData, {
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+            }).then(response => {
+                const data = response.data;
+                console.log(data.secure_url)
+                this.setState({
+                    constructionURL: data.secure_url
+                })
+                axios.put('/upload/construction', {
+                    constructionURL: this.state.constructionURL
+                })
+            })
+        });
+        // Once all the files are uploaded 
+        axios.all(uploaders).then(() => {
+            console.log("DONE")
+            // ... perform after upload is successful operation
+        });
+    }
+    // Handle Standard Drawings
+    onStandardDrawDrop(files) {
+        console.log(files)
+        this.setState({
+            files: files
+        })
+        this.handleStandardDrawDrop(files)
+    }
+    handleStandardDrawDrop = files => {
+        const uploaders = files.map(file => {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("tags", `Sewer Lateral`);
+            formData.append("upload_preset", preset);
+            formData.append("api_key", api_key);
+            formData.append("timestamp", (Date.now() / 1000) | 0);
+
+            return axios.post(url, formData, {
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+            }).then(response => {
+                const data = response.data;
+                console.log(data.secure_url)
+                this.setState({
+                    standardDrawURL: data.secure_url
+                })
+                axios.put('/upload/standardDraw', {
+                    standardDrawURL: this.state.standardDrawURL
+                })
+            })
+        });
+        // Once all the files are uploaded 
+        axios.all(uploaders).then(() => {
+            console.log("DONE")
+            // ... perform after upload is successful operation
+        });
+    }
+    // Handle Development Process
+    onDevelopDrop(files) {
+        console.log(files)
+        this.setState({
+            files: files
+        })
+        this.handleDevelopDrop(files)
+    }
+    handleDevelopDrop = files => {
+        const uploaders = files.map(file => {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("tags", `Sewer Lateral`);
+            formData.append("upload_preset", preset);
+            formData.append("api_key", api_key);
+            formData.append("timestamp", (Date.now() / 1000) | 0);
+
+            return axios.post(url, formData, {
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+            }).then(response => {
+                const data = response.data;
+                console.log(data.secure_url)
+                this.setState({
+                    developURL: data.secure_url
+                })
+                axios.put('/upload/develop', {
+                    developURL: this.state.developURL
+                })
+            })
+        });
+        // Once all the files are uploaded 
+        axios.all(uploaders).then(() => {
+            console.log("DONE")
+            // ... perform after upload is successful operation
+        });
+    }
+    // Handle Impact Fees
+    onImpactDrop(files) {
+        console.log(files)
+        this.setState({
+            files: files
+        })
+        this.handleImpactDrop(files)
+    }
+    handleImpactDrop = files => {
+        const uploaders = files.map(file => {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("tags", `Sewer Lateral`);
+            formData.append("upload_preset", preset);
+            formData.append("api_key", api_key);
+            formData.append("timestamp", (Date.now() / 1000) | 0);
+
+            return axios.post(url, formData, {
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+            }).then(response => {
+                const data = response.data;
+                console.log(data.secure_url)
+                this.setState({
+                    impactURL: data.secure_url
+                })
+                axios.put('/upload/impact', {
+                    impactURL: this.state.impactURL
+                })
+            })
+        });
+        // Once all the files are uploaded 
+        axios.all(uploaders).then(() => {
+            console.log("DONE")
+            // ... perform after upload is successful operation
+        });
+    }
 
 
 
@@ -310,57 +489,107 @@ class fileDrop extends Component {
 
         return (
             <div className="imagePreview_main">
-            <a href={process.env.REACT_APP_LOGIN}><button className="LoginButton">Login</button></a>
-                <Dropzone
-                    multiple={false}
-                    accept="application/*"
-                    onDrop={this.onAgendaDrop}
-                    style={dropzoneStyle}>
-                    <div>AGENDA, click here, or drag and drop a PDF.</div>
-                </Dropzone>
-                <Dropzone
-                    multiple={false}
-                    accept="application/*"
-                    onDrop={this.onMeetingDrop}
-                    style={dropzoneStyle}>
-                    <div>MEETING SCHEDULE, click here, or drag and drop a PDF.</div>
-                </Dropzone>
-                <Dropzone
-                    multiple={false}
-                    accept="application/*"
-                    onDrop={this.onOpBudgetSumDrop}
-                    style={dropzoneStyle}>
-                    <div>OPERATIONAL BUDGET SUM, click here, or drag and drop a PDF.</div>
-                </Dropzone>
-                <Dropzone
-                    multiple={false}
-                    accept="application/*"
-                    onDrop={this.onOpBudgetDocDrop}
-                    style={dropzoneStyle}>
-                    <div>OPERATIONAL BUDGET DOC, click here, or drag and drop a PDF.</div>
-                </Dropzone>
-                <Dropzone
-                    multiple={false}
-                    accept="application/*"
-                    onDrop={this.onSewerRateDrop}
-                    style={dropzoneStyle}>
-                    <div>SEWER RATE STUDY, click here, or drag and drop a PDF.</div>
-                </Dropzone>
-                <Dropzone
-                    multiple={false}
-                    accept="application/*"
-                    onDrop={this.onServiceFeeDrop}
-                    style={dropzoneStyle}>
-                    <div>SERVICE FEE RESOLUTION, click here, or drag and drop a PDF.</div>
-                </Dropzone>
-                <Dropzone
-                    multiple={false}
-                    accept="application/*"
-                    onDrop={this.onLateralDrop}
-                    style={dropzoneStyle}>
-                    <div>SEWER LATERAL, click here, or drag and drop a PDF.</div>
-                </Dropzone>
-
+                <a href={process.env.REACT_APP_LOGIN}><button className="LoginButton">Log In</button></a>
+                <a href={process.env.REACT_APP_LOGOUT}><button className="LoginButton">Log Out</button></a>
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onAgendaDrop}
+                        style={dropzoneStyle}>
+                        <div>AGENDA, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onMeetingDrop}
+                        style={dropzoneStyle}>
+                        <div>MEETING SCHEDULE, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onOpBudgetSumDrop}
+                        style={dropzoneStyle}>
+                        <div>OPERATIONAL BUDGET SUM, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onOpBudgetDocDrop}
+                        style={dropzoneStyle}>
+                        <div>OPERATIONAL BUDGET DOC, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onSewerRateDrop}
+                        style={dropzoneStyle}>
+                        <div>SEWER RATE STUDY, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onServiceFeeDrop}
+                        style={dropzoneStyle}>
+                        <div>SERVICE FEE RESOLUTION, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onLateralDrop}
+                        style={dropzoneStyle}>
+                        <div>SEWER LATERAL, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onConstructionDrop}
+                        style={dropzoneStyle}>
+                        <div>DESIGN STANDARDS & CONSTRUCTION SPEC, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onStandardDrawDrop}
+                        style={dropzoneStyle}>
+                        <div>STANDARD DRAWINGS, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onDevelopDrop}
+                        style={dropzoneStyle}>
+                        <div>DEVELOPMENT PROCESS, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
+                {this.state.isAdmin ?
+                    <Dropzone
+                        multiple={false}
+                        accept="application/*"
+                        onDrop={this.onImpactDrop}
+                        style={dropzoneStyle}>
+                        <div>IMPACT FEES, click here, or drag and drop a PDF.</div>
+                    </Dropzone>
+                    : null}
 
             </div>
         )

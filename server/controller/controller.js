@@ -116,7 +116,72 @@ module.exports = {
             res.status(500).send()
         })
     },
-    
+
+    construction: (req, res) => {
+        const db = req.app.get('db');
+        const { constructionURL } = req.body
+        db.addConstruction(constructionURL).then(() => {
+            res.status(200).send()
+        }).catch(() => res.status(500).send())
+    },
+    getConstruction: (req, res) => {
+        const db = req.app.get('db');
+        db.getConstruction().then((result) => {
+            res.status(200).send(result)
+        }).catch((e) => {
+            console.log(e)
+            res.status(500).send()
+        })
+    },
+    standardDraw: (req, res) => {
+        const db = req.app.get('db');
+        const { standardDrawURL } = req.body
+        db.addStandard(standardDrawURL).then(() => {
+            res.status(200).send()
+        }).catch(() => res.status(500).send())
+    },
+    getStandard: (req, res) => {
+        const db = req.app.get('db');
+        db.getStandard().then((result) => {
+            res.status(200).send(result)
+        }).catch((e) => {
+            console.log(e)
+            res.status(500).send()
+        })
+    },
+    development: (req, res) => {
+        const db = req.app.get('db');
+        const { developURL } = req.body
+        db.addDevelopment(developURL).then(() => {
+            res.status(200).send()
+        }).catch(() => res.status(500).send())
+    },
+    getDevelopment: (req, res) => {
+        const db = req.app.get('db');
+        db.getDevelopment().then((result) => {
+            res.status(200).send(result)
+        }).catch((e) => {
+            console.log(e)
+            res.status(500).send()
+        })
+    },
+    impact: (req, res) => {
+        const db = req.app.get('db');
+        const { impactURL } = req.body
+        db.addImpact(impactURL).then(() => {
+            res.status(200).send()
+        }).catch(() => res.status(500).send())
+    },
+    getImpact: (req, res) => {
+        const db = req.app.get('db');
+        db.getImpact().then((result) => {
+            res.status(200).send(result)
+        }).catch((e) => {
+            console.log(e)
+            res.status(500).send()
+        })
+    },
+
     setUser: (req, res, next) => {
         if (req.user && !req.session.user) {
             req.session.user = req.user;
